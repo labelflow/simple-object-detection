@@ -1,1 +1,8 @@
 outputs
+data/*
+__pycache__
+.vscode
+.DS_Store
+
+
+!data/sample-coco-dataset
