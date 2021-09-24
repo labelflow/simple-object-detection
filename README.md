@@ -61,3 +61,7 @@ This script runs your model on a coco dataset and generates a coco annotation fi
 ## Evaluate model
 
 Additionally to the metrics computed on the validation dataset during training, you can also qualitatively evaluate your prototype by importing your annotations in a raw dataset on [LabelFlow](https://labelflow.ai/).
+
+<p align="center">
+  <img src="public/labelflow-import.gif" />
+</p>
