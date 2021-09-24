@@ -60,7 +60,7 @@ python detect.py --dataset-path <your-coco-format-dataset-directory-path> --mode
 This script runs your model on a coco dataset and generates a coco annotation file containing the inferences in `outputs/inferences/<dataset name>_annotations.json`.
 ## 4 - Evaluate your model
 
-Additionally to the metrics computed on the validation dataset during training, you can also qualitatively evaluate your prototype by importing your annotations in a raw dataset on [LabelFlow](https://labelflow.ai/).
+Additionally to the metrics computed on the validation dataset during training, you can also qualitatively evaluate your prototype by importing the annotation file of the last section in a raw dataset on [LabelFlow](https://labelflow.ai/).
 
 <p align="center">
   <img src="public/labelflow-import.gif" />
