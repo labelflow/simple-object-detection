@@ -1,12 +1,10 @@
 # Simple object detection
 
-This work illustrates how to build an object detection proof of concept from image labelling to quantitative evaluation of a model. All you need to get started is a set of raw images that are relevant to your task. It is meant to be as easy and quick as possible to go from an idea - "Can I detect X on an image?" - to the demonstration of a simple yet effective prototype trained on a few images. The counterpart of the simplicity of this framework is that it is not much configurable, which shouldn't have too much impact for a proof of concept.
-
 <p align="center">
   <img src="public/schema-framework.svg" />
 </p>
 
-It is supported by a presentation that covers the following topics:
+This work illustrates how to build an object detection proof of concept from image labelling to quantitative evaluation of a model. All you need to get started is a set of raw images that are relevant to the task you want to address. It is supported by a presentation that covered the following topics:
 
 - Labelling of images
 
@@ -19,7 +17,7 @@ It is supported by a presentation that covers the following topics:
 The inspiration for this work comes from the [torchvision object detection tutorial](https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html) with the minimum requirements to actually use the trained model added on top. The framework is based on PyTorch and most of the utils are just copied from https://github.com/pytorch/vision/tree/main/references/detection. The frameworks' inputs and outputs are all datasets in [COCO](https://cocodataset.org/#format-data) format, which is one of the reference formats for manipulating annotated images.
 
 Data labellisation and visualization are done on [LabelFlow](https://labelflow.ai/) an open-source annotation platform that doesn't need any sign-up and that doesn't store your images.
-## Get Started
+## 0 - Install the requirements
 
 Make sure that you have python 3.8 installed. It is recommended to create a new virtual environment to avoid interferences with your global libraries.
 
@@ -27,7 +25,9 @@ Make sure that you have python 3.8 installed. It is recommended to create a new 
 pip install -r requirement.txt
 ```
 
-## Label your images
+Additionally, you should make sure that the version of `torch` you use is compatible with your environment, especially if you wish to use a GPU. Just follow instructions on [PyTorch](https://pytorch.org/get-started/locally/).
+
+## 1 - Label your images
 
 A viable dataset should have the following properties:
 
@@ -37,13 +37,13 @@ A viable dataset should have the following properties:
 
 - Consistent: the images' distribution reflects the reality of the task you're trying to address
 
-Connect on [LabelFlow](https://labelflow.ai/), upload and label your images. Export them in COCO format, making sure that you toggle the options to include the images.
+Connect on [LabelFlow](https://labelflow.ai/), upload and label your raw images. Export them to COCO format, making sure that you toggle the options to include the images.
 
 <p align="center">
   <img src="public/labelflow-export.gif" />
 </p>
 
-## Train your model on a custom dataset
+## 2 - Train your model on a custom dataset
 
 ```
 python train.py --dataset-path <your-coco-format-dataset-directory-path>
@@ -51,17 +51,21 @@ python train.py --dataset-path <your-coco-format-dataset-directory-path>
 
 This script will train a new model for you on a coco dataset that you exported from LabelFlow. One example dataset can be found in `data/sample-coco-dataset`. The model's snapshot weights will be stored after each training epoch in `outputs/models/model_<dataset name>_epoch_<snapshot index>.pth`.
 
-## Make inference
+## 3 - Make inferences
 
 ```
 python detect.py --dataset-path <your-coco-format-dataset-directory-path> --model-path <your-model-snapshot-path>
 ```
 
 This script runs your model on a coco dataset and generates a coco annotation file containing the inferences in `outputs/inferences/<dataset name>_annotations.json`.
-## Evaluate model
+## 4 - Evaluate your model
 
 Additionally to the metrics computed on the validation dataset during training, you can also qualitatively evaluate your prototype by importing your annotations in a raw dataset on [LabelFlow](https://labelflow.ai/).
 
 <p align="center">
   <img src="public/labelflow-import.gif" />
 </p>
+
+## 5 - Next steps
+
+You can tune the parameters in `train.py` and in `detect.py` to optimize the performance of your prototype. If the results are satisfying, you can add more training data and switch to a more scalable and configurable framework like Detectron2. 
