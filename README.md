@@ -49,7 +49,7 @@ Connect on [LabelFlow](https://labelflow.ai/), upload and label your raw images.
 python train.py --dataset-path <your-coco-format-dataset-directory-path>
 ```
 
-This script will train a new model for you on a coco dataset that you exported from LabelFlow. One example dataset can be found in `data/sample-coco-dataset`. The model's snapshot weights will be stored after each training epoch in `outputs/models/model_<dataset name>_epoch_<snapshot index>.pth`.
+This script will train a new model for you on a coco dataset that you exported from LabelFlow. One example dataset can be found in `data/sample-coco-dataset`. The model's snapshot weights will be stored after each training epoch in `outputs/models/<dataset name>/epoch_<snapshot index>.pth`.
 
 ## 3 - Make inferences
 
