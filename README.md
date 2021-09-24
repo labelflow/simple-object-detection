@@ -57,10 +57,10 @@ This script will train a new model for you on a coco dataset that you exported f
 python detect.py --dataset-path <your-coco-format-dataset-directory-path> --model-path <your-model-snapshot-path>
 ```
 
-This script runs your model on a coco dataset and generates a coco annotation file containing the inferences in `outputs/inferences/<dataset name>_annotations.json`.
+This script runs your model on a coco dataset and generates a coco annotation file containing the inferences in `outputs/inferences/<dataset name>_annotations.json`. Typically, you can create a raw dataset on LabelFlow and export it as explained above to generate the correct input for the model.
 ## 4 - Evaluate your model
 
-Additionally to the metrics computed on the validation dataset during training, you can also qualitatively evaluate your prototype by importing the annotation file of the last section in a raw dataset on [LabelFlow](https://labelflow.ai/).
+Additionally to the metrics computed on the validation dataset during training, you can also qualitatively evaluate your prototype by importing the annotation file of the last section in the corresponding raw dataset on [LabelFlow](https://labelflow.ai/).
 
 <p align="center">
   <img src="public/labelflow-import.gif" />
@@ -68,4 +68,4 @@ Additionally to the metrics computed on the validation dataset during training, 
 
 ## 5 - Next steps
 
-You can tune the parameters in `train.py` and in `detect.py` to optimize the performance of your prototype. If the results are satisfying, you can add more training data and switch to a more scalable and configurable framework like Detectron2. 
+You can tune the parameters in `train.py` and in `detect.py` to optimize the performance of your prototype. If the results are satisfying, you can add more training data and switch to a more scalable and configurable framework like [Detectron2](https://github.com/facebookresearch/detectron2). 
