@@ -3,7 +3,7 @@
 This work illustrates how to build an object detection proof of concept from image labelling to quantitative evaluation of a model. All you need to get started is a set of raw images that are relevant to your task. It is meant to be as easy and quick as possible to go from an idea - "Can I detect X on an image?" - to the demonstration of a simple yet effective prototype trained on a few images. The counterpart of the simplicity of this framework is that it is not much configurable, which shouldn't have too much impact for a proof of concept.
 
 <p align="center">
-  <img src="public/schema-framework.gif" />
+  <img src="public/schema-framework.svg" />
 </p>
 
 It is supported by a presentation that covers the following topics:
@@ -37,7 +37,7 @@ A viable dataset should have the following properties:
 
 - Consistent: the images' distribution reflects the reality of the task you're trying to address
 
-Connect on [LabelFlow](https://labelflow.ai/), upload and label your images. Export them in "COCO" format, making sure that you toggle the options to include the images.
+Connect on [LabelFlow](https://labelflow.ai/), upload and label your images. Export them in COCO format, making sure that you toggle the options to include the images.
 
 <p align="center">
   <img src="public/labelflow-export.gif" />
@@ -51,14 +51,6 @@ python train.py --dataset-path <your-coco-format-dataset-directory-path>
 
 This script will train a new model for you on a coco dataset that you exported from LabelFlow. One example dataset can be found in `data/sample-coco-dataset`. The model's snapshot weights will be stored after each training epoch in `outputs/models/model_<dataset name>_epoch_<snapshot index>.pth`.
 
-## Evaluate model
-
-```
-python evaluate.py --dataset-path <your-coco-format-dataset-directory-path>
-```
-
-This script will log a bunch of metrics accounting for the performance of the model.
-
 ## Make inference
 
 ```
@@ -66,3 +58,6 @@ python detect.py --dataset-path <your-coco-format-dataset-directory-path> --mode
 ```
 
 This script runs your model on a coco dataset and generates a coco annotation file containing the inferences in `outputs/inferences/<dataset name>_annotations.json`.
+## Evaluate model
+
+Additionally to the metrics computed on the validation dataset during training, you can also qualitatively evaluate your prototype by importing your annotations in a raw dataset on [LabelFlow](https://labelflow.ai/).
