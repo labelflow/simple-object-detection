@@ -2,6 +2,10 @@
 
 This work illustrates how to build an object detection proof of concept from image labelling to quantitative evaluation of a model. All you need to get started is a set of raw images that are relevant to your task. It is meant to be as easy and quick as possible to go from an idea - "Can I detect X on an image?" - to the demonstration of a simple yet effective prototype trained on a few images. The counterpart of the simplicity of this framework is that it is not much configurable, which shouldn't have too much impact for a proof of concept.
 
+<p align="center">
+  <img src="public/schema-framework.gif" />
+</p>
+
 It is supported by a presentation that covers the following topics:
 
 - Labelling of images
