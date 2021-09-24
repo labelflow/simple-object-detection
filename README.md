@@ -25,7 +25,7 @@ Make sure that you have python 3.8 installed. It is recommended to create a new 
 pip install -r requirement.txt
 ```
 
-Additionally, you should make sure that the version of `torch` you use is compatible with your environment, especially if you wish to use a GPU. Just follow instructions on [PyTorch](https://pytorch.org/get-started/locally/).
+Additionally, you should make sure that the version of `torch` you use is compatible with your environment, especially if you wish to use a GPU. Just follow the instructions on [PyTorch](https://pytorch.org/get-started/locally/).
 
 ## 1 - Label your images
 
