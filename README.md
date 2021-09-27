@@ -19,13 +19,23 @@ The inspiration for this work comes from the torchvision object detection [tutor
 Data labellisation and visualization are done on [LabelFlow](https://labelflow.ai/) an open-source annotation platform that doesn't need any sign-up and that doesn't store your images.
 ## 0 - Install the requirements
 
-Make sure that you have python 3.8 installed. It is recommended to create a new virtual environment to avoid interferences with your global libraries.
+- Make sure that you have python 3.x installed. This was tested with python 3.8.0.
+
+- It is recommended to create a new virtual environment to avoid interferences with your global libraries. In this case, you'll need to run `pip install Cython` beforehand.
+
+- If you wish to make use of a GPU, you should make sure that the version of `torch` you use is compatible with your environment. Just follow the instructions on [PyTorch](https://pytorch.org/get-started/locally/).
 
 ```
 pip install -r requirement.txt
 ```
 
-Additionally, you should make sure that the version of `torch` you use is compatible with your environment, especially if you wish to use a GPU. Just follow the instructions on [PyTorch](https://pytorch.org/get-started/locally/).
+You should then be able to run the following line without encountering any issue.
+
+```
+python train.py --dataset-path data/sample-coco-dataset
+```
+
+The device that is used for training is logged at the beginning of the training script, e.g. "`Running training on device cpu`". This can help you make sure that your GPU is actually being used if you wish to use it.
 
 ## 1 - Label your images
 
@@ -49,7 +59,7 @@ Connect on [LabelFlow](https://labelflow.ai/), upload and label your raw images.
 python train.py --dataset-path <your-coco-format-dataset-directory-path>
 ```
 
-This script will train a new model for you on a coco dataset that you exported from LabelFlow. One example dataset can be found in `data/sample-coco-dataset`. The model's snapshot weights will be stored after each training epoch in `outputs/models/<dataset name>/epoch_<snapshot index>.pth`.
+This script will train a new model for you on a coco dataset that you exported from LabelFlow or any coco format dataset respecting the structure of `data/sample-coco-dataset`. After each epoch, the script will print evaluation metrics on a validation dataset that is split from the original one. The model's snapshot weights will be stored after each training epoch in `outputs/models/<dataset name>/epoch_<snapshot index>.pth`.
 
 ## 3 - Make inferences
 
