@@ -21,8 +21,8 @@ from utils import collate_fn
 # ## Model ##
 TRAINABLE_BACKBONE_LAYERS = 3
 # ## Data Fetching ##
-BATCH_SIZE = 8
-NUM_WORKERS = 4
+BATCH_SIZE = 2
+NUM_WORKERS = 2
 # ## Optimization ##
 LEARNING_RATE = 0.005 * BATCH_SIZE / 4  # Apply linear scaling rule
 MOMENTUM = 0.9

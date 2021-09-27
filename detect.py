@@ -7,15 +7,15 @@ from torchvision.models.detection import fasterrcnn_resnet50_fpn
 from torch.utils.data.dataloader import DataLoader
 from utils import collate_fn
 
-from dataset import get_coco_dataset, get_number_of_classes
+from dataset import get_coco_dataset
 
 # ### Global Variables ###
 DEBUG = False
 # ## Model ##
 CONFIDENCE_SCORE_THRESHOLD = 0.5
 # ## Data Fetching ##
-BATCH_SIZE = 8
-NUM_WORKERS = 4
+BATCH_SIZE = 2
+NUM_WORKERS = 2
 
 
 def detect(dataset_path: str, model_path: str):
@@ -33,10 +33,7 @@ def detect(dataset_path: str, model_path: str):
     model_metadata = torch.load(model_path)
     state_dict = model_metadata.get("state_dict")
     categories = model_metadata.get("categories")
-    model = fasterrcnn_resnet50_fpn(
-        pretrained=False,
-        num_classes=len(categories) + 1,
-    )
+    model = fasterrcnn_resnet50_fpn(pretrained=False, num_classes=len(categories) + 1,)
     model.load_state_dict(state_dict, strict=True)
     model.to(device)
     model.eval()
