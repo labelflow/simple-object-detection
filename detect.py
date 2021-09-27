@@ -10,9 +10,9 @@ from utils import collate_fn
 from dataset import get_coco_dataset, get_number_of_classes
 
 # ### Global Variables ###
-DEBUG=False
+DEBUG = False
 # ## Model ##
-CONFIDENCE_SCORE_THRESHOLD=0.5
+CONFIDENCE_SCORE_THRESHOLD = 0.5
 # ## Data Fetching ##
 BATCH_SIZE = 8
 NUM_WORKERS = 4
@@ -34,7 +34,8 @@ def detect(dataset_path: str, model_path: str):
     state_dict = model_metadata.get("state_dict")
     categories = model_metadata.get("categories")
     model = fasterrcnn_resnet50_fpn(
-        pretrained=False, num_classes=len(categories) + 1,
+        pretrained=False,
+        num_classes=len(categories) + 1,
     )
     model.load_state_dict(state_dict, strict=True)
     model.to(device)
@@ -56,7 +57,14 @@ def detect(dataset_path: str, model_path: str):
                 score = scores[index_detection].tolist()
                 if score > CONFIDENCE_SCORE_THRESHOLD:
                     if DEBUG:
-                        print("[ Annotation ] {} with score {}".format(result_dataset["categories"][category_id-1].get("name"), score))
+                        print(
+                            "[ Annotation ] {} with score {}".format(
+                                result_dataset["categories"][category_id - 1].get(
+                                    "name"
+                                ),
+                                score,
+                            )
+                        )
                     width = bbox[0] - bbox[2]
                     height = bbox[3] - bbox[1]
                     result_dataset["annotations"].append(

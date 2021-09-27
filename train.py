@@ -9,7 +9,11 @@ from torch.utils.data import Subset
 from torch.optim import SGD, lr_scheduler
 from torch.hub import load_state_dict_from_url
 
-from dataset import get_coco_dataset, get_number_of_classes, get_model_categories_metadata
+from dataset import (
+    get_coco_dataset,
+    get_number_of_classes,
+    get_model_categories_metadata,
+)
 from engine import train_one_epoch, evaluate
 from utils import collate_fn
 
@@ -20,7 +24,7 @@ TRAINABLE_BACKBONE_LAYERS = 3
 BATCH_SIZE = 8
 NUM_WORKERS = 4
 # ## Optimization ##
-LEARNING_RATE = 0.005 * BATCH_SIZE / 4 # Apply linear scaling rule
+LEARNING_RATE = 0.005 * BATCH_SIZE / 4  # Apply linear scaling rule
 MOMENTUM = 0.9
 WEIGHT_DECAY = 0.0005
 STEP_SIZE = 3
@@ -32,7 +36,7 @@ RATIO_TRAINING_SPLIT = 0.8
 PRINT_FREQUENCY = 10
 
 
-def train(dataset_path):
+def train(dataset_path: str):
     model_output_path = os.path.join(
         "outputs", "models", os.path.basename(dataset_path)
     )
@@ -104,8 +108,9 @@ def train(dataset_path):
         torch.save(
             {
                 "state_dict": model.state_dict(),
-                "categories": get_model_categories_metadata(train_dataset.dataset)
-            }, os.path.join(model_output_path, f"epoch_{epoch}.pth")
+                "categories": get_model_categories_metadata(train_dataset.dataset),
+            },
+            os.path.join(model_output_path, f"epoch_{epoch}.pth"),
         )
         lr_scheduler_training.step()
         # evaluate on the test dataset

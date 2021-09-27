@@ -22,6 +22,7 @@ def get_number_of_classes(coco_detection_dataset: CocoDetection) -> int:
     num_classes = len(dataset["categories"]) + 1
     return num_classes
 
+
 def get_model_categories_metadata(coco_detection_dataset: CocoDetection):
     return list(
         map(
