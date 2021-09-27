@@ -26,7 +26,7 @@ Data labellisation and visualization are done on [LabelFlow](https://labelflow.a
 - If you wish to make use of a GPU, you should make sure that the version of `torch` you use is compatible with your environment. Just follow the instructions on [PyTorch](https://pytorch.org/get-started/locally/).
 
 ```
-pip install -r requirement.txt
+pip install -r requirements.txt
 ```
 
 You should then be able to run the following line without encountering any issue.
@@ -35,7 +35,7 @@ You should then be able to run the following line without encountering any issue
 python train.py --dataset-path data/sample-coco-dataset
 ```
 
-The device that is used for training is logged at the beginning of the training script, e.g. "`Running training on device cpu`". This can help you make sure that your GPU is actually being used if you wish to use it.
+The device that is used for training is logged at the beginning of the training script, e.g. "`Running training on device cpu`" or "`Running training on device cuda`". This can help you make sure that your GPU is actually being used if you wish to use it.
 
 ## 1 - Label your images
 
