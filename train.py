@@ -1,6 +1,7 @@
 import os
 import argparse
 import math
+from typing import NoReturn
 
 import torch
 from torchvision.models.detection import fasterrcnn_resnet50_fpn
@@ -36,7 +37,19 @@ RATIO_TRAINING_SPLIT = 0.8
 PRINT_FREQUENCY = 10
 
 
-def train(dataset_path: str):
+def train(dataset_path: str) -> NoReturn:
+    """Train an object detection model on the given dataset. The
+    script will store a snapshot of the model after each epoch,
+    containing the model's weights and the mapping between the
+    model's output and the categories. Those snapshots can directly
+    serve as input to the "detect.py" script.
+
+    Args:
+        dataset_path (str): path to the coco training dataset directory.
+
+    Returns:
+        NoReturn: [description]
+    """
     model_output_path = os.path.join(
         "outputs", "models", os.path.basename(dataset_path)
     )

@@ -1,6 +1,5 @@
 import math
 
-import json
 import sys
 import time
 import torch
@@ -24,9 +23,6 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq):
         lr_scheduler = warmup_lr_scheduler(optimizer, warmup_iters, warmup_factor)
 
     for images, targets in metric_logger.log_every(data_loader, print_freq, header):
-        # print(len(images))
-        # print(f"{len(targets)} targets")
-        # print(json.dumps([target["labels"].tolist() for target in targets], indent=2))
         images = list(image.to(device) for image in images)
         targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
 

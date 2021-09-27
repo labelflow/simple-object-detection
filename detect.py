@@ -2,11 +2,13 @@ import os
 import json
 import copy
 import argparse
+from typing import NoReturn
+
 import torch
 from torchvision.models.detection import fasterrcnn_resnet50_fpn
 from torch.utils.data.dataloader import DataLoader
-from utils import collate_fn
 
+from utils import collate_fn
 from dataset import get_coco_dataset
 
 # ### Global Variables ###
@@ -18,7 +20,23 @@ BATCH_SIZE = 2
 NUM_WORKERS = 2
 
 
-def detect(dataset_path: str, model_path: str):
+def detect(dataset_path: str, model_path: str) -> NoReturn:
+    """Makes inferences on a coco format dataset, using a model saved
+    during the training phase. The output coco annotation file is stored in
+    "outputs/inferences/<dataset name>_annotations.json" where <dataset name>
+    is the name of the directory in `dataset_path`.
+
+    Note: the resulting annotation file will drop all annotations that existed
+    in the input dataset.
+
+    Args:
+        dataset_path (str): path to the coco dataset directory.
+        model_path (str): path to the model snapshot output by the
+        "train.py" script.
+
+    Returns:
+        NoReturn: [description]
+    """
     inferences_output_path = os.path.join("outputs", "inferences")
     os.makedirs(inferences_output_path, exist_ok=True)
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
