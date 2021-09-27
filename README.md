@@ -42,7 +42,7 @@ A viable dataset should have the following properties:
 Connect on [LabelFlow](https://labelflow.ai/), upload and label your raw images. Export them to COCO format, making sure that you toggle the options to include the images.
 
 <p align="center">
-  <img src="public/labelflow-export.gif" />
+  <img src="public/labelflow-export.gif" width="500" />
 </p>
 
 The following script will train a new model for you on the coco dataset that you just exported - or any coco format dataset respecting the structure of `data/sample-coco-dataset`. 
@@ -65,10 +65,10 @@ The following script runs your model on a coco dataset and generates a coco anno
 python detect.py --dataset-path <coco-dataset-directory-path> --model-path <model-snapshot-path>
 ```
 
-Additionally to the metrics computed on the validation dataset during training, you can also qualitatively evaluate your prototype by importing the output annotation file to the corresponding raw dataset on [LabelFlow](https://labelflow.ai/).
+You can then qualitatively evaluate your prototype by importing the output annotation file to the corresponding raw dataset on [LabelFlow](https://labelflow.ai/) as shown in the above schema.
 
 <p align="center">
-  <img src="public/labelflow-import.gif" />
+  <img src="public/labelflow-import.gif" width="500" />
 </p>
 
 ## 3 - Next steps
