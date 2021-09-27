@@ -5,11 +5,11 @@ import argparse
 from typing import NoReturn
 
 import torch
-from torchvision.models.detection import fasterrcnn_resnet50_fpn
 from torch.utils.data.dataloader import DataLoader
 
 from utils import collate_fn
 from dataset import get_coco_dataset
+from model import get_fasterrcnn_resnet50_fpn
 
 # ### Global Variables ###
 DEBUG = False
@@ -51,8 +51,10 @@ def detect(dataset_path: str, model_path: str) -> NoReturn:
     model_metadata = torch.load(model_path)
     state_dict = model_metadata.get("state_dict")
     categories = model_metadata.get("categories")
-    model = fasterrcnn_resnet50_fpn(pretrained=False, num_classes=len(categories) + 1,)
-    model.load_state_dict(state_dict, strict=True)
+    model = get_fasterrcnn_resnet50_fpn(
+        state_dict=state_dict,
+        number_classes=len(categories) + 1,
+    )
     model.to(device)
     model.eval()
     result_dataset = copy.deepcopy(dataset.coco.dataset)

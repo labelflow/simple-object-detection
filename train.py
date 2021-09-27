@@ -4,7 +4,6 @@ import math
 from typing import NoReturn
 
 import torch
-from torchvision.models.detection import fasterrcnn_resnet50_fpn
 from torch.utils.data.dataloader import DataLoader
 from torch.utils.data import Subset
 from torch.optim import SGD, lr_scheduler
@@ -15,6 +14,7 @@ from dataset import (
     get_number_of_classes,
     get_model_categories_metadata,
 )
+from model import get_fasterrcnn_resnet50_fpn
 from engine import train_one_epoch, evaluate
 from utils import collate_fn
 
@@ -76,28 +76,10 @@ def train(dataset_path: str) -> NoReturn:
         shuffle=False,
         collate_fn=collate_fn,
     )
-    model = fasterrcnn_resnet50_fpn(
-        pretrained=False,
-        num_classes=get_number_of_classes(train_dataset.dataset),
+    model = get_fasterrcnn_resnet50_fpn(
         trainable_backbone_layers=TRAINABLE_BACKBONE_LAYERS,
+        number_classes=get_number_of_classes(train_dataset.dataset),
     )
-    state_dict = load_state_dict_from_url(
-        "https://download.pytorch.org/models/fasterrcnn_resnet50_fpn_coco-258fb6c6.pth",
-        progress=True,
-    )
-    # Need to manually remove the states whose dimensions don't match
-    state_dict = {
-        key: value
-        for key, value in state_dict.items()
-        if key
-        not in {
-            "roi_heads.box_predictor.cls_score.weight",
-            "roi_heads.box_predictor.cls_score.bias",
-            "roi_heads.box_predictor.bbox_pred.weight",
-            "roi_heads.box_predictor.bbox_pred.bias",
-        }
-    }
-    model.load_state_dict(state_dict, strict=False)
     model.to(device)
     # construct an optimizer
     params = [p for p in model.parameters() if p.requires_grad]
