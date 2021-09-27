@@ -4,7 +4,7 @@
   <img src="public/schema-framework.svg" />
 </p>
 
-This work illustrates how to build an object detection algorithm prototype from image labelling to quantitative evaluation of a model. All you need to get started is a set of raw images that are relevant to the task you want to address. It is supported by a presentation that covered the following topics:
+This work illustrates how to build an object detection algorithm prototype from image labelling to qualitative and quantitative evaluation of a model. All you need to get started is a set of raw images that are relevant to the task you want to address. It is supported by a presentation that covered the following topics:
 
 - Labelling of images
 
@@ -21,7 +21,7 @@ Data labellisation and visualization are done on [LabelFlow](https://labelflow.a
 
 - Make sure that you have python 3.x installed. This was tested with python 3.8.0.
 
-- It is recommended to create a new virtual environment to avoid interferences with your global libraries. In this case, you'll need to run `pip install Cython` beforehand.
+- It is recommended to create a new virtual environment to avoid interferences with your global libraries. In this case, you'll need to run `pip install Cython` before installing the requirements.
 
 - If you wish to make use of a GPU, you should make sure that the version of `torch` you use is compatible with your environment. Just follow the instructions on [PyTorch](https://pytorch.org/get-started/locally/).
 
