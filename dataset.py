@@ -42,12 +42,4 @@ def get_model_categories_metadata(coco_detection_dataset: CocoDetection):
     Returns:
         [type]: [description]
     """
-    return list(
-        map(
-            lambda category: {
-                **category,
-                "name": "Inference<{}>".format(category["name"]),
-            },
-            coco_detection_dataset.coco.dataset["categories"],
-        )
-    )
+    return coco_detection_dataset.coco.dataset["categories"]
