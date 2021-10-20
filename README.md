@@ -2,6 +2,8 @@
 
 This work illustrates how to build an object detection algorithm prototype from image labelling to qualitative and quantitative evaluation of a model. All you need to get started is a set of raw images that are relevant to the task you want to address.
 
+This workflow was presented and run during [LabelFlow's Webinar](https://www.youtube.com/watch?v=htNppk_80cA) on how to build and AI model in no time
+
 The inspiration for this work comes from the torchvision object detection [tutorial](https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html) with the minimum requirements to actually use the trained model added on top. The framework is based on PyTorch and most of the utils are just copied from torchvision [references](https://github.com/pytorch/vision/tree/main/references/detection). The framework's inputs and outputs are all datasets in [COCO](https://cocodataset.org/#format-data) format, which is one of the reference formats for manipulating annotated images.
 
 Data labellisation and visualization are done on [LabelFlow](https://labelflow.ai/) an open-source annotation platform that doesn't need any sign-up and that doesn't store your images.
